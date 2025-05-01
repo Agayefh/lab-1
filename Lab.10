@@ -1,0 +1,32 @@
+import math
+
+# Funksiya f(x)
+def f(x):
+    return x - 2 - x**(1/4)
+
+# Funksiyanın törəməsi f'(x)
+def df(x):
+    return 1 - (1 / (4 * x**(3/4)))
+
+# Nyuton metodu
+def newton_method(x0, tol=1e-7, max_iter=100):
+    for i in range(max_iter):
+        fx = f(x0)
+        dfx = df(x0)
+        if dfx == 0:
+            print("Törəmə sıfır oldu, Nyuton metodu burada dayandı.")
+            return None
+        x1 = x0 - fx / dfx
+        if abs(x1 - x0) < tol:
+            return x1
+        x0 = x1
+    print("Maksimum iterasiya sayı aşdı.")
+    return None
+
+# Başlanğıc təxmin (məsələn intervalın ortası)
+x0 = 3.5
+
+# Həlli tap
+root = newton_method(x0)
+if root is not None:
+    print(f"Təqribi kök (Nyuton üsulu): {root}")
