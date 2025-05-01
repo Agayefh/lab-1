@@ -1,0 +1,23 @@
+import math
+
+# Iterasiya funksiyası
+def g(x):
+    return 2 + x**(1/4)
+
+# Sadə iterasiya metodu
+def simple_iteration(x0, tol=1e-7, max_iter=100):
+    for i in range(max_iter):
+        x1 = g(x0)
+        if abs(x1 - x0) < tol:
+            return x1
+        x0 = x1
+    print("Maksimum iterasiya sayı aşdı.")
+    return None
+
+# Başlanğıc yaxınlaşma (intervalda bir nöqtə, məsələn 3.5)
+x0 = 3.5
+
+# Həlli tap
+root = simple_iteration(x0)
+if root is not None:
+    print(f"Təqribi kök: {root}")
